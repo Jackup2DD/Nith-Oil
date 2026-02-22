@@ -1,70 +1,192 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NITH SOVEREIGN | Global Command Centre</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;700&display=swap" rel="stylesheet">
+    <title>NITH SOVEREIGN | Strategic ESG Integrity Monitor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400&display=swap" rel="stylesheet">
     <style>
-        :root { --bg-dark: #05070a; --card-bg: #0d1117; --nith-blue: #58a6ff; --nith-green: #3fb950; --nith-red: #f85149; --text-main: #c9d1d9; --text-gray: #8b949e; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-dark); color: var(--text-main); margin: 0; padding: 0; -webkit-font-smoothing: antialiased; letter-spacing: -0.3px; }
-        .banner { width: 100%; height: 350px; background-image: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=1500'); background-size: cover; background-position: center; position: relative; }
-        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(5,7,10,0.1) 0%, rgba(5,7,10,1) 100%); }
-        .container { padding: 0 25px; max-width: 900px; margin: auto; position: relative; top: -120px; }
-        .header { text-align: center; margin-bottom: 40px; }
-        .header h1 { color: white; font-size: 2em; margin: 0; font-weight: 200; letter-spacing: 6px; text-transform: uppercase; }
-        .header p { color: var(--nith-blue); font-size: 0.8em; letter-spacing: 3px; font-weight: 400; opacity: 0.6; margin-top: 12px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; }
-        .card { background-color: var(--card-bg); border: 1px solid #21262d; border-radius: 8px; padding: 25px; transition: 0.2s ease-out; cursor: crosshair; }
-        .card:hover { transform: translateY(-3px); border-color: var(--nith-blue); box-shadow: 0 0 30px rgba(88, 166, 255, 0.1); }
-        .card h2 { font-size: 0.7em; color: var(--text-gray); margin: 0; text-transform: uppercase; letter-spacing: 2px; font-weight: 300; }
-        .value { font-size: 2.2em; font-weight: 200; margin: 10px 0; letter-spacing: -1px; }
-        .e-color { color: var(--nith-green); } .s-color { color: #f0883e; } .g-color { color: #a371f7; }
-        .score-card { grid-column: 1 / -1; text-align: center; padding: 50px; border: 1px solid var(--nith-red); background: rgba(248, 81, 73, 0.02); }
-        .score-card .value { font-size: 3.2em; color: var(--nith-red); margin: 20px 0; font-weight: 300; }
-        .badge { display: inline-flex; padding: 5px 15px; border-radius: 3px; border: 1px solid var(--nith-red); color: var(--nith-red); font-weight: 700; font-size: 0.65em; letter-spacing: 2px; }
-        #audioControl { position: fixed; bottom: 20px; right: 20px; background: transparent; color: var(--nith-blue); border: 1px solid var(--nith-blue); padding: 8px 15px; border-radius: 4px; cursor: pointer; font-size: 0.6em; z-index: 1000; transition: 0.3s; }
-        .footer { text-align: center; margin-top: 60px; padding: 30px; border-top: 1px solid #21262d; font-size: 0.6em; color: #484f58; letter-spacing: 1px; line-height: 2; font-weight: 300; text-transform: uppercase; }
+        :root { 
+            --bg-dark: #05070a; 
+            --card-bg: #0d1117; 
+            --nith-blue: #58a6ff; 
+            --nith-green: #3fb950; 
+            --nith-red: #f85149; 
+            --text-main: #c9d1d9; 
+            --text-gray: #8b949e; 
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg-dark); 
+            color: var(--text-main); 
+            margin: 0; padding: 0; 
+            -webkit-font-smoothing: antialiased; 
+            letter-spacing: -0.5px;
+        }
+
+        /* Banner & Overlay */
+        .banner { 
+            width: 100%; height: 350px; 
+            background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1500'); 
+            background-size: cover; background-position: center; position: relative;
+        }
+        .overlay { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            background: linear-gradient(to bottom, rgba(5,7,10,0.3) 0%, rgba(5,7,10,1) 100%); 
+        }
+
+        .container { padding: 0 30px; max-width: 950px; margin: auto; position: relative; top: -120px; }
+
+        /* Header Section */
+        .header { text-align: center; margin-bottom: 50px; }
+        .header h1 { 
+            color: white; font-size: 2.2em; margin: 0; font-weight: 100; 
+            letter-spacing: 12px; text-transform: uppercase; opacity: 0.9;
+        }
+        .header p { 
+            color: var(--nith-blue); font-size: 0.7em; letter-spacing: 5px; 
+            font-weight: 400; opacity: 0.5; margin-top: 15px; text-transform: uppercase;
+        }
+
+        /* Grid & Cards */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+        
+        .card { 
+            background-color: var(--card-bg); border: 1px solid #21262d; 
+            border-radius: 4px; padding: 30px; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+            cursor: crosshair; position: relative; overflow: hidden;
+        }
+        .card:hover { transform: translateY(-2px); border-color: var(--nith-blue); box-shadow: 0 0 40px rgba(88, 166, 255, 0.08); }
+        
+        .card h2 { 
+            font-size: 0.65em; color: var(--text-gray); margin: 0; 
+            text-transform: uppercase; letter-spacing: 3px; font-weight: 300; 
+        }
+        
+        .value { font-size: 2.6em; font-weight: 100; margin: 15px 0; letter-spacing: -2px; }
+        .e-color { color: var(--nith-green); }
+        .s-color { color: #f0883e; }
+        .g-color { color: #a371f7; }
+
+        /* Strategic Progress Elements */
+        .progress-container { width: 100%; height: 2px; background: #21262d; margin: 15px 0; overflow: hidden; }
+        .progress-bar { height: 100%; background: var(--nith-blue); width: 0%; transition: 3s ease-in-out; }
+        .sub-data { font-size: 0.55em; color: var(--text-gray); letter-spacing: 1.5px; text-transform: uppercase; }
+
+        /* Score Card / Audit Summary */
+        .score-card { 
+            grid-column: 1 / -1; text-align: center; padding: 60px; 
+            border: 1px solid var(--nith-red); background: rgba(248, 81, 73, 0.01);
+        }
+        .score-card .value { font-size: 4em; color: var(--nith-red); font-weight: 100; margin: 25px 0; }
+        .audit-badge { 
+            display: inline-flex; padding: 5px 20px; border: 1px solid var(--nith-red); 
+            color: var(--nith-red); font-size: 0.6em; letter-spacing: 4px; text-transform: uppercase;
+        }
+
+        /* Audio Control Interface */
+        #audioControl { 
+            position: fixed; bottom: 25px; right: 25px; background: rgba(8, 10, 15, 0.9); 
+            color: var(--nith-blue); border: 1px solid var(--nith-blue); padding: 10px 20px; 
+            border-radius: 2px; cursor: pointer; font-size: 0.55em; letter-spacing: 3px; 
+            z-index: 1000; backdrop-filter: blur(15px); transition: 0.3s;
+        }
+
+        /* Footer & Credits */
+        .footer { 
+            text-align: center; margin-top: 100px; padding: 50px; 
+            border-top: 1px solid #21262d; font-size: 0.55em; color: #30363d; 
+            letter-spacing: 2.5px; line-height: 2.8; font-weight: 300; text-transform: uppercase;
+        }
+        .highlight { color: var(--nith-blue); }
     </style>
 </head>
 <body>
+
     <button id="audioControl" onclick="toggleAudio()">[ SYSTEM: STANDBY ]</button>
+
     <div class="banner"><div class="overlay"></div></div>
+
     <div class="container">
-        <div class="header"><h1 id="clientName">NITH SOVEREIGN</h1><p>THE 6 NINES INTEGRITY UNIT</p></div>
+        <div class="header">
+            <h1 id="sectorTitle">SOVEREIGN SECTOR COMMAND</h1>
+            <p>Strategic Integrity & ESG Verification System</p>
+        </div>
+
         <div class="grid">
-            <div class="card" onmouseenter="playHover()"><h2>Environment</h2><div class="value e-color" id="valE">0</div><p style="font-size:0.6em; color:var(--text-gray);">KWH CONSUMPTION</p></div>
-            <div class="card" onmouseenter="playHover()"><h2>Social</h2><div class="value s-color" id="valS">0</div><p style="font-size:0.6em; color:var(--text-gray);">QUALITY INDEX</p></div>
-            <div class="card" onmouseenter="playHover()"><h2>Governance</h2><div class="value g-color" id="valG">0</div><p style="font-size:0.6em; color:var(--text-gray);">AUDIT SCORE</p></div>
+            <div class="card" onmouseenter="playHover()">
+                <h2>Environmental Asset Integrity (ESG-E)</h2>
+                <div class="value e-color" id="valE">0</div>
+                <div class="progress-container"><div class="progress-bar" id="barE"></div></div>
+                <div class="sub-data">Net Emission Mitigation: <span id="creditLabel" class="highlight">0</span></div>
+                <p id="gapText" style="font-size: 0.55em; color: var(--nith-red); margin-top: 8px; opacity: 0.8;"></p>
+            </div>
+
+            <div class="card" onmouseenter="playHover()">
+                <h2>Human Capital Quality Index (ESG-S)</h2>
+                <div class="value s-color" id="valS">0</div>
+                <div class="progress-container"><div class="progress-bar" id="barS"></div></div>
+                <div class="sub-data">Social Compliance Rate: <span id="valS_Sub" class="highlight">0%</span></div>
+            </div>
+
+            <div class="card" onmouseenter="playHover()">
+                <h2>Strategic Governance Factor (ESG-G)</h2>
+                <div class="value g-color" id="valG">0</div>
+                <div class="progress-container"><div class="progress-bar" id="barG"></div></div>
+                <div class="sub-data">Transparency Integrity: <span id="valG_Sub" class="highlight">0%</span></div>
+            </div>
+
             <div class="card score-card" id="mainCard" onmouseenter="playHover()">
-                <h2 style="color:var(--text-gray);">Audit Status</h2>
+                <h2>Institutional Compliance Audit</h2>
                 <div class="value" id="mainVal">LEVEL AAA (PENDING)</div>
-                <div class="badge" id="mainBadge">⚠️ RISK DETECTED: AUDIT REQUIRED</div>
+                <div class="audit-badge" id="mainBadge">Verification Required by Commander</div>
+                <p style="font-size: 0.6em; color: var(--text-gray); margin-top: 25px; letter-spacing: 2px;">
+                    Authorized under the <span class="highlight">Nithirote Sovereign Theory</span> [Reg: ลข.01]
+                </p>
             </div>
         </div>
-        <div class="footer">ARCHITECT: NITHIROTE SUWATTHIRANIN (IC: 134685) | COPYRIGHT © ลข.01 | POWERED BY DYNAMIC N</div>
+
+        <div class="footer">
+            Principal Investigator: <span class="highlight">Nithirote Suwatthiranin</span> (IC: 134685)<br>
+            Reference: Integrated Management Standards for Full-Service Assets (Key Mechanism)<br>
+            Property of <span class="highlight">Dynamic N Co., Ltd.</span> | Data Sovereign Protection Active
+        </div>
     </div>
+
     <audio id="hoverSfx" src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3"></audio>
     <audio id="successSfx" src="https://actions.google.com/sounds/v1/science_fiction/digital_power_up.ogg"></audio>
+
     <script>
+        // Database สำหรับจำลองสถานะบริษัท (สามารถเปลี่ยน id ใน URL ได้)
         const masterLedger = {
-            "A": { name: "ABU DHABI DRILLING", e: 145200, s: 78.5, g: 99.99, score: 0 },
-            "B": { name: "GLOBAL ENERGY CORP", e: 890500, s: 88.2, g: 99.95, score: 95 }
+            "GLOBAL": { name: "SOVEREIGN GLOBAL ENTERPRISE", e: 145200, credit: 112500, s: 82.4, g: 99.99, score: 0 },
+            "B": { name: "TANAKA IMPERIAL PARTNER", e: 890500, credit: 885000, s: 91.5, g: 99.95, score: 95 }
         };
+
         const urlParams = new URLSearchParams(window.location.search);
-        const id = urlParams.get('id') || 'A';
+        const id = urlParams.get('id') || 'GLOBAL';
         let audioActive = false;
 
         function toggleAudio() {
             audioActive = !audioActive;
-            document.getElementById('audioControl').innerText = audioActive ? "[ SYSTEM: ACTIVE ]" : "[ SYSTEM: STANDBY ]";
-            document.getElementById('audioControl').style.borderColor = audioActive ? "#3fb950" : "#58a6ff";
-            document.getElementById('audioControl').style.color = audioActive ? "#3fb950" : "#58a6ff";
+            const btn = document.getElementById('audioControl');
+            btn.innerText = audioActive ? "[ SYSTEM: ACTIVE ]" : "[ SYSTEM: STANDBY ]";
+            btn.style.color = audioActive ? "#3fb950" : "#58a6ff";
+            btn.style.borderColor = audioActive ? "#3fb950" : "#58a6ff";
+            if(audioActive) initSystem();
         }
-        function playHover() { if (audioActive) { const s = document.getElementById('hoverSfx'); s.currentTime = 0; s.volume = 0.2; s.play(); } }
-        
+
+        function playHover() { 
+            if (audioActive) { 
+                const s = document.getElementById('hoverSfx'); 
+                s.currentTime = 0; s.volume = 0.15; s.play(); 
+            } 
+        }
+
         function animateValue(id, start, end, duration, suffix) {
-            let obj = document.getElementById(id); let startTimestamp = null;
+            let obj = document.getElementById(id);
+            let startTimestamp = null;
             const step = (timestamp) => {
                 if (!startTimestamp) startTimestamp = timestamp;
                 const progress = Math.min((timestamp - startTimestamp) / duration, 1);
@@ -74,25 +196,50 @@
             window.requestAnimationFrame(step);
         }
 
-        function init() {
-            const d = masterLedger[id];
-            if(d) {
-                document.getElementById('clientName').innerText = d.name;
-                animateValue("valE", 0, d.e, 2000, "kWh");
-                animateValue("valS", 0, d.s, 2000, "%");
-                animateValue("valG", 0, d.g, 2000, "%");
-                if(d.score >= 80) setTimeout(finalize, 2500);
+        function initSystem() {
+            const data = masterLedger[id];
+            if(data) {
+                document.getElementById('sectorTitle').innerText = data.name;
+                
+                // Start Counting Animations
+                animateValue("valE", 0, data.e, 2500, "kWh");
+                animateValue("valS", 0, data.s, 2500, "%");
+                animateValue("valG", 0, data.g, 2500, "%");
+
+                // Update Progress Bars & Labels
+                setTimeout(() => {
+                    const offsetPct = (data.credit / data.e) * 100;
+                    document.getElementById('barE').style.width = offsetPct + "%";
+                    document.getElementById('barS').style.width = data.s + "%";
+                    document.getElementById('barG').style.width = data.g + "%";
+                    
+                    document.getElementById('creditLabel').innerText = data.credit.toLocaleString() + " CCU";
+                    document.getElementById('valS_Sub').innerText = data.s + "%";
+                    document.getElementById('valG_Sub').innerText = data.g + "%";
+                    
+                    const gap = data.e - data.credit;
+                    document.getElementById('gapText').innerText = "MITIGATION GAP: " + gap.toLocaleString() + " kWh DETECTED";
+                }, 400);
+
+                if(data.score >= 80) setTimeout(triggerFinalize, 3200);
             }
         }
 
-        function finalize() {
-            const v = document.getElementById('mainVal'); const b = document.getElementById('mainBadge'); const c = document.getElementById('mainCard');
+        function triggerFinalize() {
+            const v = document.getElementById('mainVal');
+            const b = document.getElementById('mainBadge');
+            const c = document.getElementById('mainCard');
+            
             if (audioActive) document.getElementById('successSfx').play();
-            v.innerText = "LEVEL AAA CERTIFIED"; v.style.color = "#3fb950";
-            b.innerText = "✅ VERIFIED BY NITHIROTE"; b.style.color = "#3fb950"; b.style.borderColor = "#3fb950";
-            c.style.borderColor = "#3fb950"; c.style.boxShadow = "0 0 50px rgba(63, 185, 80, 0.1)";
+            
+            v.innerText = "INSTITUTIONAL AAA CERTIFIED";
+            v.style.color = "#3fb950";
+            b.innerText = "VERIFIED: NITHIROTE STRATEGIC COMMAND";
+            b.style.color = "#3fb950";
+            b.style.borderColor = "#3fb950";
+            c.style.borderColor = "#3fb950";
+            c.style.boxShadow = "0 0 60px rgba(63, 185, 80, 0.12)";
         }
-        window.onload = init;
     </script>
 </body>
 </html>
