@@ -1,72 +1,136 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nithirote DN-Official | Nith-Oil Integrity Gateway</title>
+    <title>Nith ESG Dashboard - Company A</title>
     <style>
-        body { 
-            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), 
-                        url('https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=1920&q=80');
-            background-size: cover; background-attachment: fixed;
-            color: #e6edf3; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 40px; 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            margin: 0;
+            padding: 20px;
         }
-        .dashboard { 
-            max-width: 1100px; margin: auto; border: 1px solid rgba(210, 153, 34, 0.4); 
-            border-radius: 20px; padding: 40px; background: rgba(22, 27, 34, 0.85); 
-            backdrop-filter: blur(15px); box-shadow: 0 0 50px rgba(0,0,0,0.8);
+        .header {
+            text-align: center;
+            padding: 20px;
+            border-bottom: 1px solid #30363d;
+            margin-bottom: 30px;
         }
-        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #d29922; padding-bottom: 20px; }
-        .status-badge { background: #238636; color: white; padding: 8px 20px; border-radius: 50px; font-weight: bold; animation: pulse 2s infinite; box-shadow: 0 0 15px #238636; }
-        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-top: 40px; }
-        .stat-card { background: rgba(13, 17, 23, 0.9); border: 1px solid #30363d; padding: 30px; border-radius: 15px; text-align: center; transition: 0.3s; }
-        .stat-card:hover { border-color: #d29922; transform: translateY(-5px); }
-        .value { font-size: 2.8em; color: #79c0ff; font-weight: bold; margin: 15px 0; }
-        .label { color: #8b949e; font-size: 0.9em; letter-spacing: 1px; }
-        .audit-trail { 
-            margin-top: 40px; background: #010409; padding: 25px; border-radius: 12px; 
-            font-family: 'Courier New', monospace; font-size: 0.95em; color: #3fb950; 
-            border-left: 5px solid #d29922; line-height: 1.6;
+        .header h1 {
+            color: #58a6ff;
+            margin: 0;
+            font-size: 2.5em;
         }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.6; } 100% { opacity: 1; } }
+        .header p {
+            color: #8b949e;
+            font-size: 0.9em;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .card {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        .card h2 {
+            margin-top: 0;
+            font-size: 1.2em;
+            color: #8b949e;
+            display: flex;
+            justify-content: space-between;
+        }
+        .value {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .e-color { color: #3fb950; }
+        .s-color { color: #f0883e; }
+        .g-color { color: #a371f7; }
+        .neutral-color { color: #c9d1d9; }
+        
+        /* The Trap Section */
+        .score-card {
+            grid-column: 1 / -1;
+            background: linear-gradient(145deg, #1f242c, #0d1117);
+            text-align: center;
+            border: 2px dashed #58a6ff;
+        }
+        .score-card .value {
+            font-size: 3em;
+            color: #f85149; /* Red color to induce slight panic */
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            background-color: #f85149;
+            color: white;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .footer-note {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.8em;
+            color: #484f58;
+        }
     </style>
 </head>
 <body>
-    <div class="dashboard">
-        <div class="header">
-            <div>
-                <h1 style="margin:0; color: #f0f6fc;">NITHIROTE DN-OFFICIAL</h1>
-                <p style="color:#8b949e; margin: 5px 0;">Copyright Ref: 467868 (TPD-NNOSDI Protocol)</p>
-            </div>
-            <div class="status-badge">Bc.ESGs VERIFIED</div>
+
+    <div class="header">
+        <h1>Dynamic N: ESG Monitor</h1>
+        <p>Client: Company A | Data Origin: Thai S.E.C. & Global IC Standards</p>
+    </div>
+
+    <div class="grid-container">
+        <div class="card">
+            <h2>Environment (E) <span>🌱</span></h2>
+            <p>Energy Consumption (k/wat/h)</p>
+            <div class="value e-color">145,200 <span style="font-size: 0.4em;">kWh</span></div>
+            <p style="color: #8b949e; font-size: 0.85em;">Equivalent to: <strong style="color:#c9d1d9;">62.4 Tons CO2e</strong></p>
         </div>
 
-        <div class="grid">
-            <div class="stat-card">
-                <div class="label">Oil Extraction Flow (L/s)</div>
-                <div class="value">1,240.50</div>
-                <div class="label" style="color:#3fb950;">Secured by NNOSDI API</div>
-            </div>
-            <div class="stat-card">
-                <div class="label">Universal Value (Nith)</div>
-                <div class="value">845.32</div>
-                <div class="label">Standard Integrity Unit</div>
-            </div>
-            <div class="stat-card" style="border-color: #d29922;">
-                <div class="label">Food Allocation (17.7%)</div>
-                <div class="value" style="color:#d29922;">149.62</div>
-                <div class="label">From Fossil to Food</div>
-            </div>
+        <div class="card">
+            <h2>Social (S) <span>👥</span></h2>
+            <p>Population Quality Index</p>
+            <div class="value s-color">78.5 <span style="font-size: 0.4em;">%</span></div>
+            <p style="color: #8b949e; font-size: 0.85em;">Labor Integrity & Safety Parameters</p>
         </div>
 
-        <div class="audit-trail">
-            > INITIALIZING GLOBAL INTEGRITY PROTOCOL... DONE.<br>
-            > [SYSTEM LOG 2026-02-22] SOURCE: OFFSHORE RIG #04 | STATUS: SECURE.<br>
-            > [VERIFICATION] INTEGRITY CHECK PASSED (NO DISCREPANCIES).<br>
-            > [TRANSACTION] 5,000L REGISTERED TO BLOCKCHAIN LEDGER.<br>
-            > [DISTRIBUTION] 17.7% ALLOCATED TO UNIVERSAL FOOD FUND SUCCESSFULLY.<br>
-            > STANDING BY FOR COMMAND FROM: NITHIROTE DN-OFFICIAL.
+        <div class="card">
+            <h2>Governance (G) <span>⚖️</span></h2>
+            <p>Data Transparency Rate</p>
+            <div class="value g-color">99.99 <span style="font-size: 0.4em;">%</span></div>
+            <p style="color: #8b949e; font-size: 0.85em;">Auditable through 6 Nines Protocol</p>
+        </div>
+
+        <div class="card score-card">
+            <h2>Final Sustainability Score ($S$) <span>🏆</span></h2>
+            <p>Projected E+S+G Integrity Value</p>
+            <div class="value">TBD</div>
+            <div class="status-badge">Pending Year-End Audit</div>
+            <p style="color: #8b949e; margin-top: 15px; font-size: 0.9em;">
+                *The final $S$ score calculation requires comprehensive annual verification. <br>
+                Please ensure all parameters meet the global standards for financial compliance.
+            </p>
         </div>
     </div>
+
+    <div class="footer-note">
+        Powered by Nithirote Suwatthiranin (IC License: 134685). All Rights Reserved.
+    </div>
+
 </body>
 </html>
