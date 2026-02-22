@@ -3,56 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NITH SOVEREIGN THEORY | Strategic Global Monitor</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400&display=swap" rel="stylesheet">
+    <title>NITH SOVEREIGN | Strategic Integrity System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;700;900&display=swap" rel="stylesheet">
     <style>
         :root { --bg-dark: #05070a; --card-bg: #0d1117; --nith-blue: #58a6ff; --nith-green: #3fb950; --nith-red: #f85149; --text-main: #c9d1d9; --text-gray: #8b949e; }
         body { font-family: 'Inter', sans-serif; background-color: var(--bg-dark); color: var(--text-main); margin: 0; padding: 0; -webkit-font-smoothing: antialiased; letter-spacing: -0.5px; overflow-x: hidden; }
         
-        .banner { width: 100%; height: 350px; background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1500'); background-size: cover; background-position: center; position: relative; }
-        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(5,7,10,0.3) 0%, rgba(5,7,10,1) 100%); }
-        .container { padding: 0 30px; max-width: 950px; margin: auto; position: relative; top: -120px; }
+        .banner { width: 100%; height: 380px; background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1500'); background-size: cover; background-position: center; position: relative; }
+        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(5,7,10,0.2) 0%, rgba(5,7,10,1) 100%); }
+        .container { padding: 0 30px; max-width: 1000px; margin: auto; position: relative; top: -140px; }
 
-        /* HEADER & DYNAMIC TITLE */
-        .header { text-align: center; margin-bottom: 50px; height: 100px; }
-        #sectorTitle { color: white; font-size: 2.2em; margin: 0; font-weight: 100; letter-spacing: 12px; text-transform: uppercase; transition: opacity 1s ease-in-out; opacity: 1; }
-        .header p { color: var(--nith-blue); font-size: 0.7em; letter-spacing: 5px; font-weight: 400; opacity: 0.5; margin-top: 15px; text-transform: uppercase; }
-
-        /* NOBEL CANDIDATE BADGES */
+        /* STATUS BADGES */
         .badge-container { position: absolute; top: 20px; left: 20px; display: flex; gap: 10px; z-index: 5000; }
-        .nobel-badge { padding: 5px 15px; border: 1px solid gold; color: gold; font-size: 0.55em; letter-spacing: 2px; text-transform: uppercase; background: rgba(255, 215, 0, 0.05); border-radius: 2px; }
-        .dubai-badge { padding: 5px 15px; border: 1px solid var(--nith-blue); color: var(--nith-blue); font-size: 0.55em; letter-spacing: 2px; text-transform: uppercase; border-radius: 2px; }
-
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
-        .card { background-color: var(--card-bg); border: 1px solid #21262d; border-radius: 4px; padding: 30px; transition: 0.3s; cursor: crosshair; position: relative; }
-        .card:hover { transform: translateY(-2px); border-color: var(--nith-blue); box-shadow: 0 0 30px rgba(88, 166, 255, 0.1); }
+        .nith-badge { padding: 6px 15px; border: 1px solid var(--nith-blue); color: var(--nith-blue); font-size: 0.55em; letter-spacing: 2px; text-transform: uppercase; border-radius: 2px; background: rgba(8, 10, 15, 0.8); }
         
-        /* IMPACT POPUP FOR TAB E */
-        .impact-popup { position: absolute; top: -90px; left: 50%; transform: translateX(-50%); background: var(--nith-blue); color: #000; padding: 12px; border-radius: 2px; width: 240px; font-size: 0.7em; text-align: center; font-weight: 700; opacity: 0; visibility: hidden; transition: 0.4s; z-index: 2000; }
-        .card:hover .impact-popup { opacity: 1; visibility: visible; top: -75px; }
+        /* HEADER */
+        .header { text-align: center; margin-bottom: 60px; height: 100px; }
+        #sectorTitle { color: white; font-size: 2.2em; margin: 0; font-weight: 100; letter-spacing: 12px; text-transform: uppercase; transition: opacity 1s; }
+        .header p { color: var(--nith-blue); font-size: 0.7em; letter-spacing: 5px; font-weight: 400; opacity: 0.6; margin-top: 15px; text-transform: uppercase; }
 
-        .value { font-size: 2.6em; font-weight: 100; margin: 15px 0; letter-spacing: -2px; }
-        .progress-container { width: 100%; height: 2px; background: #21262d; margin: 15px 0; }
+        /* GRID & CARDS */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .card { background-color: var(--card-bg); border: 1px solid #21262d; border-radius: 4px; padding: 35px; transition: 0.4s; cursor: crosshair; position: relative; }
+        .card:hover { transform: translateY(-5px); border-color: var(--nith-blue); box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+        
+        /* IMPACT POPUPS */
+        .impact-popup { position: absolute; top: -100px; left: 50%; transform: translateX(-50%); background: var(--nith-blue); color: #000; padding: 18px; border-radius: 2px; width: 280px; font-size: 0.65em; text-align: center; opacity: 0; visibility: hidden; transition: 0.4s; z-index: 2000; }
+        .card:hover .impact-popup { opacity: 1; visibility: visible; top: -85px; }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 10px rgba(88, 166, 255, 0.4); scale: 1; }
+           /* แก้ไขส่วนความโปร่งแสงของ Pop-up ให้หรูขึ้น */
+.impact-popup { 
+    position: absolute; 
+    top: -100px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    background: rgba(88, 166, 255, 0.25); /* สีน้ำเงินจาง ๆ โปร่งแสง */
+    backdrop-filter: blur(15px); /* เอฟเฟกต์กระจกฝ้า เบลอฉากหลัง */
+    -webkit-backdrop-filter: blur(15px);
+    color: #fff; /* เปลี่ยนข้อความในป๊อปอัพเป็นสีขาวเพื่อให้ตัดกับพื้นโปร่ง */
+    padding: 18px; 
+    border-radius: 4px; 
+    width: 280px; 
+    font-size: 0.65em; 
+    text-align: center; 
+    opacity: 0; 
+    visibility: hidden; 
+    transition: 0.4s; 
+    z-index: 2000; 
+    border: 1px solid rgba(255, 255, 255, 0.2); /* เส้นขอบบาง ๆ เหมือนขอบกระจก */
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+}
+
+        .value { font-size: 2.8em; font-weight: 100; margin: 20px 0; letter-spacing: -2px; }
+        .progress-container { width: 100%; height: 2px; background: #21262d; margin: 20px 0; }
         .progress-bar { height: 100%; background: var(--nith-blue); width: 0%; transition: 3s ease-in-out; }
 
-        /* SOVEREIGN STATUS BOX */
-        .sovereign-box { grid-column: 1 / -1; border: 1px solid #30363d; padding: 25px; text-align: left; background: rgba(255,255,255,0.01); display: flex; justify-content: space-between; align-items: center; }
-        #currentJurisdiction { font-weight: 200; letter-spacing: 4px; color: var(--nith-blue); transition: opacity 0.8s; }
-
-        .score-card { grid-column: 1 / -1; text-align: center; padding: 60px; border: 1px solid var(--nith-red); background: rgba(248, 81, 73, 0.01); }
-        .audit-badge { display: inline-flex; padding: 5px 20px; border: 1px solid var(--nith-red); color: var(--nith-red); font-size: 0.6em; letter-spacing: 4px; text-transform: uppercase; }
+        /* CALCULATOR PANEL */
+        #calcPanel { position: fixed; left: 25px; bottom: 80px; width: 240px; background: rgba(13, 17, 23, 0.98); border: 1px solid var(--nith-blue); padding: 25px; border-radius: 4px; z-index: 6000; backdrop-filter: blur(15px); display: none; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
+        .calc-input { width: 100%; background: #05070a; border: 1px solid #30363d; color: white; font-size: 0.9em; padding: 8px; margin: 10px 0; outline: none; }
         
-        #audioControl { position: fixed; bottom: 25px; right: 25px; background: rgba(8, 10, 15, 0.9); color: var(--nith-blue); border: 1px solid var(--nith-blue); padding: 10px 20px; border-radius: 2px; cursor: pointer; font-size: 0.55em; z-index: 1000; backdrop-filter: blur(15px); }
-        .footer { text-align: center; margin-top: 100px; padding: 50px; border-top: 1px solid #21262d; font-size: 0.55em; color: #30363d; letter-spacing: 2px; line-height: 2.8; font-weight: 300; text-transform: uppercase; }
+        #audioControl, #calcBtn { position: fixed; bottom: 25px; background: rgba(8, 10, 15, 0.9); color: var(--nith-blue); border: 1px solid var(--nith-blue); padding: 10px 20px; border-radius: 2px; cursor: pointer; font-size: 0.55em; z-index: 1000; backdrop-filter: blur(15px); letter-spacing: 1px; }
+        #audioControl { right: 25px; }
+        #calcBtn { left: 25px; }
+
+        .footer { text-align: center; margin-top: 120px; padding: 60px; border-top: 1px solid #21262d; font-size: 0.6em; color: #484f58; letter-spacing: 2px; text-transform: uppercase; line-height: 2.5; }
     </style>
 </head>
 <body>
     <div class="badge-container">
-        <div class="nobel-badge">🏆 NOBEL CANDIDATE: NITHIROTE [2026-REF]</div>
-        <div class="dubai-badge">📜 DUBAI IP: 50-AED-ACTIVE</div>
+        <div class="nith-badge" style="border-color: gold; color: gold;">PRINCIPAL INVESTIGATOR: NITHIROTE</div>
+        <div class="nith-badge">DUBAI I.P. REG: [ACTIVE]</div>
     </div>
 
+    <div id="calcPanel">
+        <h2 style="font-size: 0.6em; color: var(--nith-blue); margin-bottom: 20px; letter-spacing: 2px;">SOVEREIGN PROFIT CALC</h2>
+        <label style="font-size: 0.45em; color: var(--text-gray);">ASSET VALUATION ($)</label>
+        <input type="number" id="assetIn" class="calc-input" value="1000000">
+        <label style="font-size: 0.45em; color: var(--text-gray);">RISK FACTOR (%)</label>
+        <input type="number" id="riskIn" class="calc-input" value="17.7">
+        <button onclick="calculateNith()" style="width: 100%; background: var(--nith-blue); border: none; padding: 10px; font-weight: 900; font-size: 0.6em; cursor: pointer; margin-top: 10px;">EXECUTE STRATEGY</button>
+        <div style="margin-top: 20px; border-top: 1px solid #30363d; padding-top: 15px;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.55em; margin-bottom: 8px;">
+                <span>NET SOVEREIGN PROFIT:</span>
+                <span id="resProfit" style="color: var(--nith-green);">$0.00</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.55em;">
+                <span>STRATEGIC MARGIN:</span>
+                <span id="resMargin" style="color: var(--nith-blue);">0%</span>
+            </div>
+        </div>
+    </div>
+
+    <button id="calcBtn" onclick="toggleCalc()">[ OPEN STRATEGIC CALC ]</button>
     <button id="audioControl" onclick="toggleAudio()">[ SYSTEM: STANDBY ]</button>
+
     <div class="banner"><div class="overlay"></div></div>
 
     <div class="container">
@@ -62,44 +108,51 @@
         </div>
 
         <div class="grid">
-            <div class="sovereign-box">
-                <div>
-                    <h2 style="font-size:0.6em; color:var(--text-gray); margin-bottom:10px;">ACTIVE JURISDICTION</h2>
-                    <div id="currentJurisdiction">THAILAND (HQ)</div>
-                </div>
-                <div class="audit-badge" style="border-color:var(--nith-green); color:var(--nith-green); font-size:0.5em;">Non-Controlled Verification</div>
-            </div>
-
             <div class="card" onmouseenter="playHover()">
-                <div class="impact-popup">⚡ IMPACT: POWERING 1.7 TRILLION POPULATION</div>
+                <div class="impact-popup" style="font-weight: 700;">
+                    ⚡ ENERGY POTENTIAL:<br>POWERING 1.7 TRILLION POPULATION
+                </div>
                 <h2>Environmental Asset Integrity</h2>
                 <div class="value" id="valE" style="color:var(--nith-green)">0</div>
                 <div class="progress-container"><div class="progress-bar" id="barE"></div></div>
                 <p id="gapText" style="font-size: 0.55em; color: var(--nith-red); opacity: 0.8;"></p>
-                <p style="font-size:0.45em; color:#50565d;">* Comparative representation for academic audit.</p>
+                <p style="font-size:0.45em; color:#484f58;">* Comparative units for global audit.</p>
             </div>
             
             <div class="card" onmouseenter="playHover()">
                 <h2>Human Capital Quality</h2>
                 <div class="value" id="valS" style="color:#f0883e">0</div>
                 <div class="progress-container"><div class="progress-bar" id="barS"></div></div>
-            </div>
-            <div class="card" onmouseenter="playHover()">
-                <h2>Strategic Governance</h2>
-                <div class="value" id="valG" style="color:#a371f7">0</div>
-                <div class="progress-container"><div class="progress-bar" id="barG"></div></div>
+                <div class="sub-data" style="font-size: 0.5em; letter-spacing: 2px;">EARNING WHILE LEARNING</div>
             </div>
 
-            <div class="card score-card" id="mainCard" onmouseenter="playHover()">
-                <h2>Institutional Compliance Audit</h2>
-                <div class="value" id="mainVal">LEVEL AAA (PENDING)</div>
-                <div class="audit-badge" id="mainBadge">Verification Required</div>
+            <div class="card" onmouseenter="playHover()">
+                <div class="impact-popup pulse-effect" style="width: 300px; line-height: 1.6;">
+                    <span style="font-weight: 900; letter-spacing: 2px;">[ SOVEREIGN MANDATE ]</span><br><br>
+                    "IT'S NOT JUST MONEY IN THE BANK;<br>
+                    IT'S THE DOMINANCE OF MANAGEMENT<br>
+                    OVER GLOBAL RESOURCES."
+                </div>
+                <h2>Strategic Governance</h2>
+                <div class="value" id="valG" style="color:#a371f7">0</div>
+                <div class="progress-container"><div class="progress-bar" id="barG" style="background: #a371f7;"></div></div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.5em; letter-spacing: 2px;">
+                    <span>AUTONOMY:</span>
+                    <span style="color: var(--nith-green);">ACTIVE</span>
+                </div>
+            </div>
+
+            <div class="card" style="grid-column: 1 / -1; text-align: center; padding: 60px;" id="mainCard">
+                <h2 style="letter-spacing: 10px;">INSTITUTIONAL AUDIT</h2>
+                <div class="value" id="mainVal" style="font-size: 3.5em;">LEVEL AAA (PENDING)</div>
+                <div class="nith-badge" id="mainBadge" style="border-color: var(--nith-red); color: var(--nith-red);">Verification Required</div>
             </div>
         </div>
 
         <div class="footer">
-            Principal Investigator: <span style="color:var(--nith-blue)">Nithirote Suwatthiranin</span> (IC: 134685)<br>
-            Managed by <span style="color:var(--nith-blue)">Dynamic N Co., Ltd.</span> | [Reg: ลข.01]
+            Principal Investigator: <span style="color:white">Nithirote Suwatthiranin</span> (IC: 134685)<br>
+            Managed by <span style="color:var(--nith-blue)">Dynamic N Co., Ltd.</span> | [Property Reg: ลข.01]<br>
+            <span style="font-size: 0.8em; opacity: 0.5;">All calculations account for Opportunity Cost and Risk Integrity.</span>
         </div>
     </div>
 
@@ -107,35 +160,35 @@
     <audio id="successSfx" src="https://actions.google.com/sounds/v1/science_fiction/digital_power_up.ogg"></audio>
 
     <script>
-        const masterLedger = {
-            "GLOBAL": { titles: ["NITH SOVEREIGN", "GLOBAL SECTOR COMMAND"], jurisdictions: ["THAILAND (HQ)", "UNITED ARAB EMIRATES", "GLOBAL SOVEREIGN"], e: 145200, credit: 112500, s: 82.4, g: 99.99, score: 90 }
-        };
-
-        let audioActive = false;
-        let titleIdx = 0; let jurIdx = 0;
+        const data = { titles: ["NITH SOVEREIGN", "GLOBAL SECTOR COMMAND"], e: 145200, credit: 112500, s: 82.4, g: 99.99 };
+        let audioActive = false; let tIdx = 0;
 
         function toggleAudio() {
             audioActive = !audioActive;
             document.getElementById('audioControl').innerText = audioActive ? "[ SYSTEM: ACTIVE ]" : "[ SYSTEM: STANDBY ]";
-            if(audioActive) { initSystem(); startRotations(); }
+            if(audioActive) { 
+                initSystem();
+                setInterval(() => {
+                    const t = document.getElementById('sectorTitle');
+                    t.style.opacity = 0;
+                    setTimeout(() => { tIdx = (tIdx + 1) % data.titles.length; t.innerText = data.titles[tIdx]; t.style.opacity = 1; }, 1000);
+                }, 7000);
+            }
         }
 
-        function startRotations() {
-            const data = masterLedger["GLOBAL"];
-            setInterval(() => {
-                const t = document.getElementById('sectorTitle');
-                t.style.opacity = 0;
-                setTimeout(() => { titleIdx = (titleIdx + 1) % data.titles.length; t.innerText = data.titles[titleIdx]; t.style.opacity = 1; }, 1000);
-            }, 7000);
-
-            setInterval(() => {
-                const j = document.getElementById('currentJurisdiction');
-                j.style.opacity = 0;
-                setTimeout(() => { jurIdx = (jurIdx + 1) % data.jurisdictions.length; j.innerText = data.jurisdictions[jurIdx]; j.style.opacity = 1; }, 800);
-            }, 10000);
+        function toggleCalc() {
+            const p = document.getElementById('calcPanel');
+            p.style.display = p.style.display === 'block' ? 'none' : 'block';
         }
 
-        function playHover() { if (audioActive) { const s = document.getElementById('hoverSfx'); s.currentTime = 0; s.volume = 0.15; s.play(); } }
+        function calculateNith() {
+            const asset = parseFloat(document.getElementById('assetIn').value);
+            const risk = parseFloat(document.getElementById('riskIn').value);
+            const net = asset - (asset * (risk/100));
+            document.getElementById('resProfit').innerText = "$" + net.toLocaleString(undefined, {minimumFractionDigits: 2});
+            document.getElementById('resMargin').innerText = ((net/asset)*100).toFixed(2) + "%";
+            if(audioActive) document.getElementById('successSfx').play();
+        }
 
         function animateValue(id, start, end, duration, suffix) {
             let obj = document.getElementById(id); let startTimestamp = null;
@@ -149,26 +202,32 @@
         }
 
         function initSystem() {
-            const d = masterLedger["GLOBAL"];
-            animateValue("valE", 0, d.e, 2500, "kWh");
-            animateValue("valS", 0, d.s, 2500, "%");
-            animateValue("valG", 0, d.g, 2500, "%");
+            animateValue("valE", 0, data.e, 2500, "kWh");
+            animateValue("valS", 0, data.s, 2500, "%");
+            animateValue("valG", 0, data.g, 2500, "%");
             setTimeout(() => {
-                document.getElementById('barE').style.width = ((d.credit / d.e) * 100) + "%";
-                document.getElementById('barS').style.width = d.s + "%";
-                document.getElementById('barG').style.width = d.g + "%";
-                document.getElementById('gapText').innerText = "MITIGATION GAP: " + (d.e - d.credit).toLocaleString() + " kWh";
-            }, 400);
-            if(d.score >= 80) setTimeout(finalize, 3200);
+                document.getElementById('barE').style.width = ((data.credit / data.e) * 100) + "%";
+                document.getElementById('barS').style.width = data.s + "%";
+                document.getElementById('barG').style.width = data.g + "%";
+                document.getElementById('gapText').innerText = "MITIGATION GAP: " + (data.e - data.credit).toLocaleString() + " kWh";
+                finalize();
+            }, 500);
         }
 
         function finalize() {
-            const v = document.getElementById('mainVal'); const b = document.getElementById('mainBadge'); const c = document.getElementById('mainCard');
-            if (audioActive) document.getElementById('successSfx').play();
-            v.innerText = "INSTITUTIONAL AAA CERTIFIED"; v.style.color = "#3fb950";
-            b.innerText = "VERIFIED: NITHIROTE STRATEGIC COMMAND"; b.style.color = "#3fb950"; b.style.borderColor = "#3fb950";
-            c.style.borderColor = "#3fb950"; c.style.boxShadow = "0 0 60px rgba(63, 185, 80, 0.15)";
+            setTimeout(() => {
+                if (audioActive) document.getElementById('successSfx').play();
+                document.getElementById('mainVal').innerText = "INSTITUTIONAL AAA CERTIFIED";
+                document.getElementById('mainVal').style.color = "#3fb950";
+                const b = document.getElementById('mainBadge');
+                b.innerText = "VERIFIED: NITHIROTE STRATEGIC COMMAND";
+                b.style.color = "#3fb950"; b.style.borderColor = "#3fb950";
+                document.getElementById('mainCard').style.borderColor = "#3fb950";
+                document.getElementById('mainCard').style.boxShadow = "0 0 50px rgba(63, 185, 80, 0.2)";
+            }, 3000);
         }
+
+        function playHover() { if (audioActive) { const s = document.getElementById('hoverSfx'); s.currentTime = 0; s.volume = 0.1; s.play(); } }
     </script>
 </body>
 </html>
