@@ -3,122 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NITH SOVEREIGN | Tactical Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Kanit:wght@200;400;700&display=swap" rel="stylesheet">
+    <title>NITH SOVEREIGN | Global Command Centre</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --bg-dark: #0d1117; --card-bg: #161b22; --nith-blue: #58a6ff; --nith-green: #3fb950; --nith-red: #f85149; --text-main: #c9d1d9; --text-gray: #8b949e; }
-        body { font-family: 'Inter', 'Kanit', sans-serif; background-color: var(--bg-dark); color: var(--text-main); margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
-        .banner { width: 100%; height: 380px; background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1500'); background-size: cover; background-position: center; position: relative; }
-        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(13,17,23,0) 0%, rgba(13,17,23,1) 100%); }
-        .container { padding: 0 25px; max-width: 1000px; margin: auto; position: relative; top: -120px; }
+        :root { --bg-dark: #05070a; --card-bg: #0d1117; --nith-blue: #58a6ff; --nith-green: #3fb950; --nith-red: #f85149; --text-main: #c9d1d9; --text-gray: #8b949e; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-dark); color: var(--text-main); margin: 0; padding: 0; -webkit-font-smoothing: antialiased; letter-spacing: -0.3px; }
+        .banner { width: 100%; height: 350px; background-image: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=1500'); background-size: cover; background-position: center; position: relative; }
+        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(5,7,10,0.1) 0%, rgba(5,7,10,1) 100%); }
+        .container { padding: 0 25px; max-width: 900px; margin: auto; position: relative; top: -120px; }
         .header { text-align: center; margin-bottom: 40px; }
-        .header h1 { color: white; font-size: 3.8em; margin: 0; font-weight: 900; letter-spacing: -2px; text-transform: uppercase; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        
-        /* CARD STYLES */
-        .card { 
-            background-color: var(--card-bg); border: 1px solid #30363d; 
-            border-radius: 20px; padding: 35px; box-shadow: 0 15px 35px rgba(0,0,0,0.4); 
-            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            cursor: pointer;
-        }
-        .card:hover { transform: scale(1.03); border-color: var(--nith-blue); box-shadow: 0 0 20px rgba(88, 166, 255, 0.2); }
-        
-        .value { font-size: 3.2em; font-weight: 900; margin: 15px 0; letter-spacing: -1.5px; }
+        .header h1 { color: white; font-size: 2em; margin: 0; font-weight: 200; letter-spacing: 6px; text-transform: uppercase; }
+        .header p { color: var(--nith-blue); font-size: 0.8em; letter-spacing: 3px; font-weight: 400; opacity: 0.6; margin-top: 12px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; }
+        .card { background-color: var(--card-bg); border: 1px solid #21262d; border-radius: 8px; padding: 25px; transition: 0.2s ease-out; cursor: crosshair; }
+        .card:hover { transform: translateY(-3px); border-color: var(--nith-blue); box-shadow: 0 0 30px rgba(88, 166, 255, 0.1); }
+        .card h2 { font-size: 0.7em; color: var(--text-gray); margin: 0; text-transform: uppercase; letter-spacing: 2px; font-weight: 300; }
+        .value { font-size: 2.2em; font-weight: 200; margin: 10px 0; letter-spacing: -1px; }
         .e-color { color: var(--nith-green); } .s-color { color: #f0883e; } .g-color { color: #a371f7; }
-        .score-card { grid-column: 1 / -1; text-align: center; padding: 50px; border: 2px solid var(--nith-red); background: rgba(248, 81, 73, 0.02); }
-        .badge { display: inline-flex; align-items: center; padding: 10px 25px; border-radius: 100px; background: var(--nith-red); color: white; font-weight: 700; font-size: 0.85em; }
-        
-        #audioControl { position: fixed; bottom: 20px; right: 20px; background: var(--nith-blue); color: white; border: none; padding: 12px 24px; border-radius: 50px; cursor: pointer; font-weight: bold; z-index: 1000; box-shadow: 0 0 20px rgba(88, 166, 255, 0.5); }
-        .footer { text-align: center; margin-top: 60px; padding: 40px; border-top: 1px solid #30363d; font-size: 0.85em; color: #484f58; line-height: 2; }
+        .score-card { grid-column: 1 / -1; text-align: center; padding: 50px; border: 1px solid var(--nith-red); background: rgba(248, 81, 73, 0.02); }
+        .score-card .value { font-size: 3.2em; color: var(--nith-red); margin: 20px 0; font-weight: 300; }
+        .badge { display: inline-flex; padding: 5px 15px; border-radius: 3px; border: 1px solid var(--nith-red); color: var(--nith-red); font-weight: 700; font-size: 0.65em; letter-spacing: 2px; }
+        #audioControl { position: fixed; bottom: 20px; right: 20px; background: transparent; color: var(--nith-blue); border: 1px solid var(--nith-blue); padding: 8px 15px; border-radius: 4px; cursor: pointer; font-size: 0.6em; z-index: 1000; transition: 0.3s; }
+        .footer { text-align: center; margin-top: 60px; padding: 30px; border-top: 1px solid #21262d; font-size: 0.6em; color: #484f58; letter-spacing: 1px; line-height: 2; font-weight: 300; text-transform: uppercase; }
     </style>
 </head>
 <body>
-    <button id="audioControl" onclick="toggleAudio()">🔊 START NITH-SYSTEM</button>
-
+    <button id="audioControl" onclick="toggleAudio()">[ SYSTEM: STANDBY ]</button>
     <div class="banner"><div class="overlay"></div></div>
     <div class="container">
-        <div class="header">
-            <h1 id="clientName">NITH SOVEREIGN</h1>
-            <p style="color: var(--nith-blue); letter-spacing: 2px; font-weight: 700;">6 NINES INTEGRITY MONITOR</p>
-        </div>
+        <div class="header"><h1 id="clientName">NITH SOVEREIGN</h1><p>THE 6 NINES INTEGRITY UNIT</p></div>
         <div class="grid">
-            <div class="card" onmouseenter="playHover()">
-                <h2>Environment (E) 🌱</h2>
-                <div class="value e-color" id="valE">0</div>
-                <p style="font-size:0.85em; color:var(--text-gray);">kWh Real-time Feed</p>
-            </div>
-            <div class="card" onmouseenter="playHover()">
-                <h2>Social (S) 👥</h2>
-                <div class="value s-color" id="valS">0</div>
-                <p style="font-size:0.85em; color:var(--text-gray);">Human Quality Index</p>
-            </div>
-            <div class="card" onmouseenter="playHover()">
-                <h2>Governance (G) ⚖️</h2>
-                <div class="value g-color" id="valG">0</div>
-                <p style="font-size:0.85em; color:var(--text-gray);">Transparency Audit</p>
-            </div>
+            <div class="card" onmouseenter="playHover()"><h2>Environment</h2><div class="value e-color" id="valE">0</div><p style="font-size:0.6em; color:var(--text-gray);">KWH CONSUMPTION</p></div>
+            <div class="card" onmouseenter="playHover()"><h2>Social</h2><div class="value s-color" id="valS">0</div><p style="font-size:0.6em; color:var(--text-gray);">QUALITY INDEX</p></div>
+            <div class="card" onmouseenter="playHover()"><h2>Governance</h2><div class="value g-color" id="valG">0</div><p style="font-size:0.6em; color:var(--text-gray);">AUDIT SCORE</p></div>
             <div class="card score-card" id="mainCard" onmouseenter="playHover()">
-                <h2 style="color:white;">Current Audit Status</h2>
+                <h2 style="color:var(--text-gray);">Audit Status</h2>
                 <div class="value" id="mainVal">LEVEL AAA (PENDING)</div>
-                <div class="badge" id="mainBadge">⚠️ RISK DETECTED</div>
+                <div class="badge" id="mainBadge">⚠️ RISK DETECTED: AUDIT REQUIRED</div>
             </div>
         </div>
-        <div class="footer">
-            SYSTEM ARCHITECT: Nithirote Suwatthiranin (IC: 134685) | COPYRIGHT © ลข.01 [cite: 2026-02-18]<br>
-            <span style="opacity: 0.6;">MANAGED BY DYNAMIC N CO., LTD. (DN)</span>
-        </div>
+        <div class="footer">ARCHITECT: NITHIROTE SUWATTHIRANIN (IC: 134685) | COPYRIGHT © ลข.01 | POWERED BY DYNAMIC N</div>
     </div>
-
-    <audio id="bgm" loop src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3"></audio>
-    <audio id="hoverSfx" src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3"></audio> <audio id="sfxSuccess" src="https://actions.google.com/sounds/v1/science_fiction/interstellar_travel.ogg"></audio>
-
+    <audio id="hoverSfx" src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3"></audio>
+    <audio id="successSfx" src="https://actions.google.com/sounds/v1/science_fiction/digital_power_up.ogg"></audio>
     <script>
         const masterLedger = {
-            "A": { name: "COMPANY A DRILLING", e: "145,200 kWh", s: "78.5 %", g: "99.99 %", score: 0 },
-            "B": { name: "GLOBAL ENERGY CORP", e: "890,500 kWh", s: "88.2 %", g: "99.95 %", score: 95 }
+            "A": { name: "ABU DHABI DRILLING", e: 145200, s: 78.5, g: 99.99, score: 0 },
+            "B": { name: "GLOBAL ENERGY CORP", e: 890500, s: 88.2, g: 99.95, score: 95 }
         };
         const urlParams = new URLSearchParams(window.location.search);
         const id = urlParams.get('id') || 'A';
-        let isAudioActive = false;
+        let audioActive = false;
 
         function toggleAudio() {
-            const bgm = document.getElementById('bgm');
-            const btn = document.getElementById('audioControl');
-            if (bgm.paused) { 
-                bgm.play(); bgm.volume = 0.15; 
-                btn.innerText = "🔇 MUTE SYSTEM"; isAudioActive = true;
-            } else { 
-                bgm.pause(); btn.innerText = "🔊 START NITH-SYSTEM"; isAudioActive = false;
-            }
+            audioActive = !audioActive;
+            document.getElementById('audioControl').innerText = audioActive ? "[ SYSTEM: ACTIVE ]" : "[ SYSTEM: STANDBY ]";
+            document.getElementById('audioControl').style.borderColor = audioActive ? "#3fb950" : "#58a6ff";
+            document.getElementById('audioControl').style.color = audioActive ? "#3fb950" : "#58a6ff";
         }
-
-        // ฟังก์ชันเล่นเสียง ฉึบ! ตอนเมาส์ลากผ่าน
-        function playHover() {
-            if (!isAudioActive) return;
-            const sfx = document.getElementById('hoverSfx');
-            sfx.currentTime = 0; // Reset ให้เริ่มใหม่ทันทีที่เมาส์แตะ
-            sfx.volume = 0.3;
-            sfx.play();
+        function playHover() { if (audioActive) { const s = document.getElementById('hoverSfx'); s.currentTime = 0; s.volume = 0.2; s.play(); } }
+        
+        function animateValue(id, start, end, duration, suffix) {
+            let obj = document.getElementById(id); let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerText = (progress * (end - start) + start).toLocaleString(undefined, {minimumFractionDigits: (end % 1 !== 0 ? 1 : 0)}) + " " + suffix;
+                if (progress < 1) window.requestAnimationFrame(step);
+            };
+            window.requestAnimationFrame(step);
         }
 
         function init() {
             const d = masterLedger[id];
             if(d) {
                 document.getElementById('clientName').innerText = d.name;
-                document.getElementById('valE').innerText = d.e;
-                document.getElementById('valS').innerText = d.s;
-                document.getElementById('valG').innerText = d.g;
-                if(d.score >= 80) setTimeout(finalize, 1500);
+                animateValue("valE", 0, d.e, 2000, "kWh");
+                animateValue("valS", 0, d.s, 2000, "%");
+                animateValue("valG", 0, d.g, 2000, "%");
+                if(d.score >= 80) setTimeout(finalize, 2500);
             }
         }
 
         function finalize() {
             const v = document.getElementById('mainVal'); const b = document.getElementById('mainBadge'); const c = document.getElementById('mainCard');
-            if (isAudioActive) document.getElementById('sfxSuccess').play();
+            if (audioActive) document.getElementById('successSfx').play();
             v.innerText = "LEVEL AAA CERTIFIED"; v.style.color = "#3fb950";
-            b.innerText = "✅ VERIFIED BY NITHIROTE"; b.style.backgroundColor = "#3fb950";
-            c.style.borderColor = "#3fb950"; c.style.boxShadow = "0 0 50px rgba(63, 185, 80, 0.4)";
+            b.innerText = "✅ VERIFIED BY NITHIROTE"; b.style.color = "#3fb950"; b.style.borderColor = "#3fb950";
+            c.style.borderColor = "#3fb950"; c.style.boxShadow = "0 0 50px rgba(63, 185, 80, 0.1)";
         }
         window.onload = init;
     </script>
