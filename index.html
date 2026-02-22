@@ -3,63 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NITH GLOBAL ESG MONITOR | Sovereign Command</title>
+    <title>NITH SOVEREIGN | Tactical Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Kanit:wght@200;400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #0d1117; color: #c9d1d9; margin: 0; padding: 0; overflow-x: hidden; }
-        .banner { 
-            width: 100%; height: 400px; 
-            background-image: url('http://googleusercontent.com/image_collection/image_retrieval/10785303890910509794_0'); 
-            background-size: cover; background-position: center; position: relative; border-bottom: 3px solid #58a6ff;
+        :root { --bg-dark: #0d1117; --card-bg: #161b22; --nith-blue: #58a6ff; --nith-green: #3fb950; --nith-red: #f85149; --text-main: #c9d1d9; --text-gray: #8b949e; }
+        body { font-family: 'Inter', 'Kanit', sans-serif; background-color: var(--bg-dark); color: var(--text-main); margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+        .banner { width: 100%; height: 380px; background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1500'); background-size: cover; background-position: center; position: relative; }
+        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(13,17,23,0) 0%, rgba(13,17,23,1) 100%); }
+        .container { padding: 0 25px; max-width: 1000px; margin: auto; position: relative; top: -120px; }
+        .header { text-align: center; margin-bottom: 40px; }
+        .header h1 { color: white; font-size: 3.8em; margin: 0; font-weight: 900; letter-spacing: -2px; text-transform: uppercase; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        
+        /* CARD STYLES */
+        .card { 
+            background-color: var(--card-bg); border: 1px solid #30363d; 
+            border-radius: 20px; padding: 35px; box-shadow: 0 15px 35px rgba(0,0,0,0.4); 
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            cursor: pointer;
         }
-        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(13,17,23,0.2), rgba(13,17,23,1)); }
-        .container { padding: 20px; max-width: 1100px; margin: auto; position: relative; top: -100px; }
-        .header { text-align: center; margin-bottom: 50px; text-shadow: 2px 2px 10px rgba(0,0,0,1); }
-        .header h1 { color: #58a6ff; font-size: 3.5em; margin: 0; font-weight: 900; letter-spacing: -1px; }
-        .header p { color: #8b949e; font-size: 1.2em; font-weight: 500; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .card { background-color: #161b22; border: 1px solid #30363d; border-radius: 15px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: 0.3s; }
-        .card:hover { transform: translateY(-5px); border-color: #58a6ff; }
-        .value { font-size: 2.8em; font-weight: 800; margin: 10px 0; }
-        .e-color { color: #3fb950; } .s-color { color: #f0883e; } .g-color { color: #a371f7; }
-        .score-card { grid-column: 1 / -1; text-align: center; border: 3px solid #f85149; background: #0d1117; transition: 0.5s; }
-        .score-card .value { font-size: 4.5em; color: #f85149; text-shadow: 0 0 15px rgba(248,81,73,0.4); }
-        .badge { display: inline-block; padding: 10px 25px; border-radius: 50px; background: #f85149; color: white; font-weight: bold; font-size: 0.9em; margin-top: 15px; }
-        .footer { text-align: center; margin-top: 50px; padding: 30px; border-top: 1px solid #30363d; font-size: 0.8em; color: #484f58; line-height: 1.6; }
-        .highlight { color: #58a6ff; font-weight: bold; }
+        .card:hover { transform: scale(1.03); border-color: var(--nith-blue); box-shadow: 0 0 20px rgba(88, 166, 255, 0.2); }
+        
+        .value { font-size: 3.2em; font-weight: 900; margin: 15px 0; letter-spacing: -1.5px; }
+        .e-color { color: var(--nith-green); } .s-color { color: #f0883e; } .g-color { color: #a371f7; }
+        .score-card { grid-column: 1 / -1; text-align: center; padding: 50px; border: 2px solid var(--nith-red); background: rgba(248, 81, 73, 0.02); }
+        .badge { display: inline-flex; align-items: center; padding: 10px 25px; border-radius: 100px; background: var(--nith-red); color: white; font-weight: 700; font-size: 0.85em; }
+        
+        #audioControl { position: fixed; bottom: 20px; right: 20px; background: var(--nith-blue); color: white; border: none; padding: 12px 24px; border-radius: 50px; cursor: pointer; font-weight: bold; z-index: 1000; box-shadow: 0 0 20px rgba(88, 166, 255, 0.5); }
+        .footer { text-align: center; margin-top: 60px; padding: 40px; border-top: 1px solid #30363d; font-size: 0.85em; color: #484f58; line-height: 2; }
     </style>
 </head>
 <body>
+    <button id="audioControl" onclick="toggleAudio()">🔊 START NITH-SYSTEM</button>
+
     <div class="banner"><div class="overlay"></div></div>
     <div class="container">
         <div class="header">
-            <h1 id="clientName">NITH GLOBAL ESG</h1>
-            <p id="clientSub">The 6 Nines Standard | Energy Sovereign Protocol</p>
+            <h1 id="clientName">NITH SOVEREIGN</h1>
+            <p style="color: var(--nith-blue); letter-spacing: 2px; font-weight: 700;">6 NINES INTEGRITY MONITOR</p>
         </div>
         <div class="grid">
-            <div class="card"><h2>Environment (E) 🌱</h2><div class="value e-color" id="valE">0</div><p>Energy Consumption Monitor</p></div>
-            <div class="card"><h2>Social (S) 👥</h2><div class="value s-color" id="valS">0</div><p>Human Capital Integrity</p></div>
-            <div class="card"><h2>Governance (G) ⚖️</h2><div class="value g-color" id="valG">0</div><p>Transparency Verification</p></div>
-            <div class="card score-card" id="mainCard">
-                <h2>SUSTAINABILITY AUDIT STATUS</h2>
+            <div class="card" onmouseenter="playHover()">
+                <h2>Environment (E) 🌱</h2>
+                <div class="value e-color" id="valE">0</div>
+                <p style="font-size:0.85em; color:var(--text-gray);">kWh Real-time Feed</p>
+            </div>
+            <div class="card" onmouseenter="playHover()">
+                <h2>Social (S) 👥</h2>
+                <div class="value s-color" id="valS">0</div>
+                <p style="font-size:0.85em; color:var(--text-gray);">Human Quality Index</p>
+            </div>
+            <div class="card" onmouseenter="playHover()">
+                <h2>Governance (G) ⚖️</h2>
+                <div class="value g-color" id="valG">0</div>
+                <p style="font-size:0.85em; color:var(--text-gray);">Transparency Audit</p>
+            </div>
+            <div class="card score-card" id="mainCard" onmouseenter="playHover()">
+                <h2 style="color:white;">Current Audit Status</h2>
                 <div class="value" id="mainVal">LEVEL AAA (PENDING)</div>
-                <div class="badge" id="mainBadge">⚠️ AUDIT INCOMPLETE: RISK DETECTED ⚠️</div>
-                <p style="margin-top:20px; color:#8b949e;">Final audit by Nithirote Suwatthiranin required for global bank synchronization.</p>
+                <div class="badge" id="mainBadge">⚠️ RISK DETECTED</div>
             </div>
         </div>
         <div class="footer">
-            SYSTEM ARCHITECT: <span class="highlight">Nithirote Suwatthiranin</span> (IC License: 134685)<br>
-            REGULATED BY: Thai S.E.C. Standards | COPYRIGHT © ลข.01 REGISTERED<br>
-            POWERED BY: <span class="highlight">DYNAMIC N CO., LTD.</span> (DN)
+            SYSTEM ARCHITECT: Nithirote Suwatthiranin (IC: 134685) | COPYRIGHT © ลข.01 [cite: 2026-02-18]<br>
+            <span style="opacity: 0.6;">MANAGED BY DYNAMIC N CO., LTD. (DN)</span>
         </div>
     </div>
+
+    <audio id="bgm" loop src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3"></audio>
+    <audio id="hoverSfx" src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3"></audio> <audio id="sfxSuccess" src="https://actions.google.com/sounds/v1/science_fiction/interstellar_travel.ogg"></audio>
+
     <script>
         const masterLedger = {
-            "A": { name: "COMPANY A DRILLING", e: "145,200 kWh", s: "78.5 Index", g: "99.99 %", score: 0 },
-            "B": { name: "GLOBAL ENERGY CORP", e: "890,500 kWh", s: "88.2 Index", g: "99.95 %", score: 95 },
-            "C": { name: "THE LINE VENTURES", e: "2,450,000 kWh", s: "92.0 Index", g: "100 %", score: 99 }
+            "A": { name: "COMPANY A DRILLING", e: "145,200 kWh", s: "78.5 %", g: "99.99 %", score: 0 },
+            "B": { name: "GLOBAL ENERGY CORP", e: "890,500 kWh", s: "88.2 %", g: "99.95 %", score: 95 }
         };
         const urlParams = new URLSearchParams(window.location.search);
         const id = urlParams.get('id') || 'A';
+        let isAudioActive = false;
+
+        function toggleAudio() {
+            const bgm = document.getElementById('bgm');
+            const btn = document.getElementById('audioControl');
+            if (bgm.paused) { 
+                bgm.play(); bgm.volume = 0.15; 
+                btn.innerText = "🔇 MUTE SYSTEM"; isAudioActive = true;
+            } else { 
+                bgm.pause(); btn.innerText = "🔊 START NITH-SYSTEM"; isAudioActive = false;
+            }
+        }
+
+        // ฟังก์ชันเล่นเสียง ฉึบ! ตอนเมาส์ลากผ่าน
+        function playHover() {
+            if (!isAudioActive) return;
+            const sfx = document.getElementById('hoverSfx');
+            sfx.currentTime = 0; // Reset ให้เริ่มใหม่ทันทีที่เมาส์แตะ
+            sfx.volume = 0.3;
+            sfx.play();
+        }
+
         function init() {
             const d = masterLedger[id];
             if(d) {
@@ -67,14 +109,16 @@
                 document.getElementById('valE').innerText = d.e;
                 document.getElementById('valS').innerText = d.s;
                 document.getElementById('valG').innerText = d.g;
-                if(d.score >= 80) finalize(d.score);
+                if(d.score >= 80) setTimeout(finalize, 1500);
             }
         }
-        function finalize(s) {
+
+        function finalize() {
             const v = document.getElementById('mainVal'); const b = document.getElementById('mainBadge'); const c = document.getElementById('mainCard');
-            v.innerText = "✨ LEVEL AAA CERTIFIED ✨"; v.style.color = "#3fb950";
-            b.innerText = "✅ AUDIT PASSED: VERIFIED BY NITHIROTE ✅"; b.style.backgroundColor = "#3fb950";
-            c.style.borderColor = "#3fb950"; c.style.boxShadow = "0 0 40px rgba(63, 185, 80, 0.4)";
+            if (isAudioActive) document.getElementById('sfxSuccess').play();
+            v.innerText = "LEVEL AAA CERTIFIED"; v.style.color = "#3fb950";
+            b.innerText = "✅ VERIFIED BY NITHIROTE"; b.style.backgroundColor = "#3fb950";
+            c.style.borderColor = "#3fb950"; c.style.boxShadow = "0 0 50px rgba(63, 185, 80, 0.4)";
         }
         window.onload = init;
     </script>
