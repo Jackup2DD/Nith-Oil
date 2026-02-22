@@ -3,84 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NITH SOVEREIGN | Strategic Command</title>
+    <title>NITHIROTE SOVEREIGN COMMAND</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap" rel="stylesheet">
     <style>
         :root { --bg-dark: #05070a; --card-bg: #0d1117; --nith-blue: #58a6ff; --nith-green: #3fb950; --nith-red: #f85149; --text-main: #c9d1d9; --text-gray: #8b949e; }
         body { font-family: 'Inter', sans-serif; background-color: var(--bg-dark); color: var(--text-main); margin: 0; padding: 0; overflow-x: hidden; letter-spacing: -0.5px; }
         
-        .banner { width: 100%; height: 400px; background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1500'); background-size: cover; background-position: center; position: relative; }
-        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(5,7,10,0.2) 0%, rgba(5,7,10,1) 100%); }
-        .container { padding: 0 30px; max-width: 1000px; margin: auto; position: relative; top: -140px; }
+        .banner { width: 100%; height: 420px; background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1500'); background-size: cover; background-position: center; position: relative; }
+        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(5,7,10,0.1) 0%, rgba(5,7,10,1) 100%); }
+        .container { padding: 0 30px; max-width: 1050px; margin: auto; position: relative; top: -160px; }
 
-        /* BADGES */
-        .badge-container { position: absolute; top: 20px; left: 20px; display: flex; gap: 10px; z-index: 5000; }
-        .nith-badge { padding: 6px 12px; border: 1px solid var(--nith-blue); color: var(--nith-blue); font-size: 0.55em; letter-spacing: 2px; text-transform: uppercase; background: rgba(8, 10, 15, 0.9); border-radius: 2px; }
+        /* BADGES & STATUS */
+        .badge-container { position: absolute; top: 20px; left: 20px; display: flex; gap: 12px; z-index: 5000; }
+        .nith-badge { padding: 8px 16px; border: 1px solid var(--nith-blue); color: var(--nith-blue); font-size: 0.55em; letter-spacing: 3px; text-transform: uppercase; background: rgba(8, 10, 15, 0.85); backdrop-filter: blur(10px); border-radius: 2px; font-weight: 700; }
 
         /* HEADER */
-        .header { text-align: center; margin-bottom: 60px; }
-        #sectorTitle { color: white; font-size: 2.5em; font-weight: 100; letter-spacing: 12px; text-transform: uppercase; margin: 0; transition: 1s; }
-        .header p { color: var(--nith-blue); font-size: 0.7em; letter-spacing: 5px; opacity: 0.6; margin-top: 15px; }
+        .header { text-align: center; margin-bottom: 80px; }
+        #sectorTitle { color: white; font-size: 2.8em; font-weight: 100; letter-spacing: 15px; text-transform: uppercase; margin: 0; transition: 1.5s; text-shadow: 0 0 20px rgba(88, 166, 255, 0.3); }
+        .header p { color: var(--nith-blue); font-size: 0.75em; letter-spacing: 6px; opacity: 0.7; margin-top: 20px; font-weight: 300; }
 
-        /* GRID */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .card { background-color: var(--card-bg); border: 1px solid #21262d; border-radius: 4px; padding: 35px; position: relative; transition: 0.4s; cursor: crosshair; }
-        .card:hover { border-color: var(--nith-blue); box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+        /* GRID SYSTEM */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+        .card { background-color: var(--card-bg); border: 1px solid #21262d; border-radius: 4px; padding: 40px; position: relative; transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); cursor: crosshair; }
+        .card:hover { border-color: var(--nith-blue); transform: translateY(-8px); box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
 
-        /* GLASS POPUPS */
-        .impact-popup { position: absolute; top: -90px; left: 50%; transform: translateX(-50%); background: rgba(88, 166, 255, 0.2); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); color: #fff; padding: 18px; border-radius: 4px; width: 280px; font-size: 0.6em; text-align: center; opacity: 0; visibility: hidden; transition: 0.4s; z-index: 5000; border: 1px solid rgba(255, 255, 255, 0.1); }
-        .card:hover .impact-popup { opacity: 1; visibility: visible; top: -75px; }
+        /* ADVANCED GLASS POPUPS & PULSE */
+        @keyframes pulse-vibrant {
+            0% { box-shadow: 0 0 15px rgba(88, 166, 255, 0.3); background: rgba(88, 166, 255, 0.1); border-color: rgba(255,255,255,0.1); }
+            50% { box-shadow: 0 0 40px rgba(88, 166, 255, 0.6); background: rgba(88, 166, 255, 0.25); border-color: rgba(255,255,255,0.4); }
+            100% { box-shadow: 0 0 15px rgba(88, 166, 255, 0.3); background: rgba(88, 166, 255, 0.1); border-color: rgba(255,255,255,0.1); }
+        }
 
-        @keyframes pulse-glow { 0% { box-shadow: 0 0 10px rgba(88, 166, 255, 0.4); } 50% { box-shadow: 0 0 30px rgba(88, 166, 255, 0.8); } 100% { box-shadow: 0 0 10px rgba(88, 166, 255, 0.4); } }
-        .pulse { animation: pulse-glow 2s infinite; border-color: #fff !important; }
+        .impact-popup { 
+            position: absolute; top: -110px; left: 50%; transform: translateX(-50%); 
+            width: 310px; padding: 22px; border-radius: 6px; font-size: 0.62em; text-align: center; 
+            opacity: 0; visibility: hidden; transition: 0.4s; z-index: 5000;
+            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+            animation: pulse-vibrant 2.5s infinite ease-in-out;
+            border: 1px solid rgba(255, 255, 255, 0.2); color: #fff;
+        }
+        .card:hover .impact-popup { opacity: 1; visibility: visible; top: -95px; }
 
-        .value { font-size: 2.8em; font-weight: 100; margin: 20px 0; letter-spacing: -2px; }
-        .progress-container { width: 100%; height: 2px; background: #21262d; margin: 20px 0; }
-        .progress-bar { height: 100%; background: var(--nith-blue); width: 0%; transition: 3s; }
+        .value { font-size: 3em; font-weight: 100; margin: 25px 0; letter-spacing: -3px; }
+        .progress-container { width: 100%; height: 2px; background: #21262d; margin: 25px 0; }
+        .progress-bar { height: 100%; background: var(--nith-blue); width: 0%; transition: 3s cubic-bezier(0.1, 0, 0, 1); }
 
-        /* CALCULATOR - FIXED LAYOUT */
-        #calcPanel { position: fixed; left: 25px; bottom: 85px; width: 280px; background: rgba(13, 17, 23, 0.95); border: 1px solid var(--nith-blue); padding: 25px; border-radius: 4px; z-index: 6000; backdrop-filter: blur(20px); display: none; box-shadow: 0 20px 50px rgba(0,0,0,0.9); }
-        .calc-group { margin-bottom: 15px; }
-        .calc-label { font-size: 0.5em; color: var(--text-gray); letter-spacing: 1px; display: flex; justify-content: space-between; align-items: center; }
-        .calc-input { width: 100%; background: #05070a; border: 1px solid #30363d; color: white; font-size: 0.9em; padding: 10px; margin-top: 5px; box-sizing: border-box; outline: none; }
-        .info-icon { cursor: help; color: var(--nith-blue); font-weight: 900; background: rgba(88, 166, 255, 0.1); padding: 2px 6px; border-radius: 50%; font-size: 0.8em; }
+        /* CALCULATOR */
+        #calcPanel { position: fixed; left: 30px; bottom: 95px; width: 300px; background: rgba(13, 17, 23, 0.9); border: 1px solid var(--nith-blue); padding: 30px; border-radius: 4px; z-index: 6000; backdrop-filter: blur(30px); display: none; box-shadow: 0 30px 70px rgba(0,0,0,0.9); }
+        .calc-group { margin-bottom: 20px; }
+        .calc-label { font-size: 0.55em; color: var(--text-gray); letter-spacing: 1.5px; display: flex; justify-content: space-between; align-items: center; text-transform: uppercase; }
+        .calc-input { width: 100%; background: rgba(5, 7, 10, 0.8); border: 1px solid #30363d; color: white; font-size: 1em; padding: 12px; margin-top: 8px; box-sizing: border-box; outline: none; border-radius: 2px; }
+        .info-icon { cursor: help; color: var(--nith-blue); font-weight: 900; background: rgba(88, 166, 255, 0.1); padding: 3px 8px; border-radius: 50%; font-size: 0.9em; border: 1px solid rgba(88, 166, 255, 0.2); }
 
-        /* FOOTER & BUTTONS */
-        #audioControl, #calcBtn { position: fixed; bottom: 25px; background: rgba(8, 10, 15, 0.9); color: var(--nith-blue); border: 1px solid var(--nith-blue); padding: 12px 20px; border-radius: 2px; cursor: pointer; font-size: 0.55em; z-index: 6001; backdrop-filter: blur(15px); font-weight: 700; }
-        #audioControl { right: 25px; } #calcBtn { left: 25px; }
-        .footer { text-align: center; margin-top: 150px; padding: 60px; border-top: 1px solid #21262d; font-size: 0.6em; color: #484f58; line-height: 2.5; text-transform: uppercase; }
+        #audioControl, #calcBtn { position: fixed; bottom: 30px; background: rgba(8, 10, 15, 0.95); color: var(--nith-blue); border: 1px solid var(--nith-blue); padding: 14px 24px; border-radius: 2px; cursor: pointer; font-size: 0.6em; z-index: 6001; backdrop-filter: blur(20px); font-weight: 700; letter-spacing: 2px; transition: 0.3s; }
+        #audioControl:hover, #calcBtn:hover { background: var(--nith-blue); color: #000; }
+        #audioControl { right: 30px; } #calcBtn { left: 30px; }
+
+        .footer { text-align: center; margin-top: 180px; padding: 80px; border-top: 1px solid #21262d; font-size: 0.65em; color: #484f58; line-height: 2.8; text-transform: uppercase; letter-spacing: 3px; }
     </style>
 </head>
 <body>
     <div class="badge-container">
         <div class="nith-badge" style="border-color: gold; color: gold;">PRINCIPAL INVESTIGATOR: NITHIROTE</div>
-        <div class="nith-badge">DUBAI I.P. REG: [ACTIVE]</div>
+        <div class="nith-badge">DUBAI I.P. REGISTERED [ลข.01]</div>
     </div>
 
     <div id="calcPanel">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-            <h2 style="font-size: 0.6em; color: var(--nith-blue); letter-spacing: 2px; margin: 0;">SOVEREIGN PROFIT CALC</h2>
-            <span class="info-icon" title="Manual: This tool calculates the Sovereign Surplus after deducting the Risk Factor Tax.">!</span>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+            <h2 style="font-size: 0.7em; color: var(--nith-blue); letter-spacing: 3px; margin: 0;">STRATEGIC CALCULATOR</h2>
+            <span class="info-icon" title="Sovereign Profit Manual: Asset - (Asset * Risk Tax) = Net Surplus.">!</span>
         </div>
         
         <div class="calc-group">
-            <label class="calc-label">ASSET VALUATION ($) <span style="font-size: 0.8em; opacity: 0.5;">(Total Volume)</span></label>
-            <input type="number" id="assetIn" class="calc-input" value="3000000">
+            <label class="calc-label">TOTAL ASSET VOLUME ($)</label>
+            <input type="number" id="assetIn" class="calc-input" value="10000000">
         </div>
 
         <div class="calc-group">
-            <label class="calc-label">RISK FACTOR (%) <span class="info-icon" title="Enter the Fund Company's Risk Tax percentage (e.g., 17.7%)">?</span></label>
+            <label class="calc-label">RISK FACTOR TAX (%) <span class="info-icon" title="Standard Risk Tax of the Fund Management (17.7% Recommended)">?</span></label>
             <input type="number" id="riskIn" class="calc-input" value="17.7">
         </div>
 
-        <button onclick="calculateNith()" style="width: 100%; background: var(--nith-blue); border: none; padding: 12px; font-weight: 900; font-size: 0.65em; cursor: pointer; letter-spacing: 1px;">EXECUTE STRATEGY</button>
+        <button onclick="calculateNith()" style="width: 100%; background: var(--nith-blue); border: none; padding: 15px; font-weight: 900; font-size: 0.7em; cursor: pointer; letter-spacing: 2px; color: #000; text-transform: uppercase;">Execute Calculation</button>
 
-        <div style="margin-top: 25px; border-top: 1px solid #30363d; padding-top: 15px;">
-            <div style="display: flex; justify-content: space-between; font-size: 0.55em; margin-bottom: 10px;">
+        <div style="margin-top: 30px; border-top: 1px solid #30363d; padding-top: 20px;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.6em; margin-bottom: 12px;">
                 <span style="color: var(--text-gray);">NET SOVEREIGN PROFIT:</span>
                 <span id="resProfit" style="color: var(--nith-green); font-weight: 700;">$0.00</span>
             </div>
-            <div style="display: flex; justify-content: space-between; font-size: 0.55em;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.6em;">
                 <span style="color: var(--text-gray);">STRATEGIC MARGIN:</span>
                 <span id="resMargin" style="color: var(--nith-blue); font-weight: 700;">0%</span>
             </div>
@@ -94,51 +105,55 @@
 
     <div class="container">
         <div class="header">
-            <h1 id="sectorTitle">NITH SOVEREIGN</h1>
-            <p>Strategic Integrity & ESG Verification System</p>
+            <h1 id="sectorTitle">NITHIROTE SOVEREIGN</h1>
+            <p>ADVANCED ESG INTEGRITY COMMAND CENTER</p>
         </div>
 
         <div class="grid">
             <div class="card" onmouseenter="playHover()">
-                <div class="impact-popup" style="font-weight: 700;">⚡ IMPACT: POWERING 1.7 TRILLION PEOPLE</div>
-                <h2>Environmental Asset Integrity</h2>
+                <div class="impact-popup" style="font-weight: 700; letter-spacing: 1px;">
+                    <span style="color: var(--nith-blue);">[ ENVIRONMENTAL ASSET INTEGRITY ]</span><br><br>
+                    ⚡ ENERGY POTENTIAL:<br>POWERING 1.7 TRILLION PEOPLE
+                </div>
+                <h2>Environmental (E)</h2>
                 <div class="value" id="valE" style="color:var(--nith-green)">0</div>
                 <div class="progress-container"><div class="progress-bar" id="barE"></div></div>
-                <p id="gapText" style="font-size: 0.55em; color: var(--nith-red); opacity: 0.8;"></p>
-                <p style="font-size:0.45em; color:#484f58;">* Based on global pain point research [Manual-Ref].</p>
+                <p id="gapText" style="font-size: 0.58em; color: var(--nith-red); font-weight: 700; letter-spacing: 1px;"></p>
+                <p style="font-size:0.48em; color:#484f58; margin-top: 15px;">* DERIVED FROM GLOBAL PAIN POINT RESEARCH.</p>
             </div>
             
             <div class="card" onmouseenter="playHover()">
-                <h2>Human Capital Quality</h2>
+                <h2>Social (S)</h2>
                 <div class="value" id="valS" style="color:#f0883e">0</div>
-                <div class="progress-container"><div class="progress-bar" id="barS"></div></div>
-                <div class="sub-data" style="font-size: 0.5em; letter-spacing: 2px;">EARNING WHILE LEARNING</div>
+                <div class="progress-container"><div class="progress-bar" id="barS" style="background: #f0883e;"></div></div>
+                <div class="sub-data" style="font-size: 0.55em; letter-spacing: 3px; font-weight: 700; color: #f0883e;">EARNING WHILE LEARNING</div>
             </div>
 
             <div class="card" onmouseenter="playHover()">
-                <div class="impact-popup pulse" style="width: 320px; line-height: 1.6;">
-                    <span style="font-weight: 900; letter-spacing: 2px;">[ SOVEREIGN MANDATE ]</span><br><br>
+                <div class="impact-popup" style="width: 330px; line-height: 1.7;">
+                    <span style="font-weight: 900; letter-spacing: 3px; color: #a371f7;">[ SOVEREIGN MANDATE ]</span><br><br>
                     "IT'S NOT JUST MONEY IN THE BANK;<br>IT'S THE DOMINANCE OF MANAGEMENT<br>OVER GLOBAL RESOURCES."
                 </div>
-                <h2>Strategic Governance</h2>
+                <h2>Governance (G)</h2>
                 <div class="value" id="valG" style="color:#a371f7">0</div>
                 <div class="progress-container"><div class="progress-bar" id="barG" style="background: #a371f7;"></div></div>
-                <div style="display: flex; justify-content: space-between; font-size: 0.5em; letter-spacing: 2px;">
-                    <span>AUTONOMY:</span> <span style="color: var(--nith-green);">ACTIVE</span>
+                <div style="display: flex; justify-content: space-between; font-size: 0.55em; letter-spacing: 2px;">
+                    <span style="color: var(--text-gray);">AUTONOMY PROTOCOL:</span> 
+                    <span style="color: var(--nith-green); font-weight: 900;">ACTIVE</span>
                 </div>
             </div>
 
-            <div class="card" style="grid-column: 1 / -1; text-align: center; padding: 60px;" id="mainCard">
-                <h2 style="letter-spacing: 10px;">INSTITUTIONAL AUDIT</h2>
-                <div class="value" id="mainVal" style="font-size: 3.2em;">LEVEL AAA (PENDING)</div>
-                <div class="nith-badge" id="mainBadge" style="border-color: var(--nith-red); color: var(--nith-red);">Verification Required</div>
+            <div class="card" style="grid-column: 1 / -1; text-align: center; padding: 70px; border: 1px solid rgba(248, 81, 73, 0.2);" id="mainCard">
+                <h2 style="letter-spacing: 12px; font-weight: 400; opacity: 0.5;">INSTITUTIONAL AUDIT SCORE</h2>
+                <div class="value" id="mainVal" style="font-size: 3.8em; margin: 30px 0;">LEVEL AAA (PENDING)</div>
+                <div class="nith-badge" id="mainBadge" style="border-color: var(--nith-red); color: var(--nith-red); font-size: 0.7em;">Verification Required</div>
             </div>
         </div>
 
         <div class="footer">
-            Principal Investigator: <span style="color:white">Nithirote Suwatthiranin</span><br>
-            Managed by <span style="color:var(--nith-blue)">Dynamic N Co., Ltd.</span> | [Reg: ลข.01]<br>
-            <span style="font-size: 0.8em; opacity: 0.4;">All models are derived from real-world global pain point analysis.</span>
+            Principal Investigator: <span style="color:white; font-weight: 700;">Nithirote Suwatthiranin</span><br>
+            Infrastructure by <span style="color:var(--nith-blue); font-weight: 700;">Dynamic N Co., Ltd.</span> | [Property Reg: ลข.01]<br>
+            <span style="font-size: 0.8em; opacity: 0.4;">Sovereign Theory © 2026. Global Research & Development Project.</span>
         </div>
     </div>
 
@@ -146,13 +161,13 @@
     <audio id="successSfx" src="https://actions.google.com/sounds/v1/science_fiction/digital_power_up.ogg"></audio>
 
     <script>
-        const data = { titles: ["NITH SOVEREIGN", "GLOBAL SECTOR COMMAND"], e: 145200, credit: 112500, s: 82.4, g: 99.99 };
+        const data = { titles: ["NITHIROTE SOVEREIGN", "GLOBAL STRATEGIC COMMAND"], e: 145200, credit: 112500, s: 82.4, g: 99.99 };
         let audioActive = false; let tIdx = 0;
 
         function toggleAudio() {
             audioActive = !audioActive;
             document.getElementById('audioControl').innerText = audioActive ? "[ SYSTEM: ACTIVE ]" : "[ SYSTEM: STANDBY ]";
-            if(audioActive) { initSystem(); setInterval(() => { const t = document.getElementById('sectorTitle'); t.style.opacity = 0; setTimeout(() => { tIdx = (tIdx + 1) % data.titles.length; t.innerText = data.titles[tIdx]; t.style.opacity = 1; }, 1000); }, 7000); }
+            if(audioActive) { initSystem(); setInterval(() => { const t = document.getElementById('sectorTitle'); t.style.opacity = 0; setTimeout(() => { tIdx = (tIdx + 1) % data.titles.length; t.innerText = data.titles[tIdx]; t.style.opacity = 1; }, 1500); }, 8000); }
         }
 
         function toggleCalc() { const p = document.getElementById('calcPanel'); p.style.display = p.style.display === 'block' ? 'none' : 'block'; }
@@ -178,27 +193,29 @@
         }
 
         function initSystem() {
-            animateValue("valE", 0, data.e, 2500, "kWh"); animateValue("valS", 0, data.s, 2500, "%"); animateValue("valG", 0, data.g, 2500, "%");
+            animateValue("valE", 0, data.e, 3000, "kWh"); animateValue("valS", 0, data.s, 3000, "%"); animateValue("valG", 0, data.g, 3000, "%");
             setTimeout(() => {
                 document.getElementById('barE').style.width = ((data.credit / data.e) * 100) + "%";
                 document.getElementById('barS').style.width = data.s + "%";
                 document.getElementById('barG').style.width = data.g + "%";
                 document.getElementById('gapText').innerText = "MITIGATION GAP: " + (data.e - data.credit).toLocaleString() + " kWh";
-                setTimeout(finalize, 2500);
-            }, 500);
+                setTimeout(finalize, 3000);
+            }, 600);
         }
 
         function finalize() {
             document.getElementById('mainVal').innerText = "INSTITUTIONAL AAA CERTIFIED";
             document.getElementById('mainVal').style.color = "#3fb950";
+            document.getElementById('mainVal').style.textShadow = "0 0 30px rgba(63, 185, 80, 0.4)";
             const b = document.getElementById('mainBadge');
             b.innerText = "VERIFIED: NITHIROTE STRATEGIC COMMAND";
             b.style.color = "#3fb950"; b.style.borderColor = "#3fb950";
             document.getElementById('mainCard').style.borderColor = "#3fb950";
+            document.getElementById('mainCard').style.boxShadow = "0 0 50px rgba(63, 185, 80, 0.2)";
             if (audioActive) document.getElementById('successSfx').play();
         }
 
-        function playHover() { if (audioActive) { const s = document.getElementById('hoverSfx'); s.currentTime = 0; s.volume = 0.1; s.play(); } }
+        function playHover() { if (audioActive) { const s = document.getElementById('hoverSfx'); s.currentTime = 0; s.volume = 0.15; s.play(); } }
     </script>
 </body>
 </html>
